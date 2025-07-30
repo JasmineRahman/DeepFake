@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Generated Content Analysis</title>
+    <!-- Add Bootstrap CDN link for CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #104467; /* Deep blue background color */
+            color: #fff; /* White text for better contrast */
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #083759; /* Darker shade of blue for the navbar */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #083759;
+            color: #fff;
+        }
+
+        nav {
+            background-color: #083759;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        #main-content {
+            padding: 20px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for form */
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        form label, form button {
+            color: #fff;
+        }
+
+        form button {
+            background-color: #083759;
+            border: none;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        form button:hover {
+            background-color: #0b497b; /* Slightly lighter blue for hover effect */
+        }
+
+        footer {
+            background-color: #083759;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>User-Generated Content Analysis</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/deepfake_awareness">Deepfake Awareness</a></li>
+            <li><a href="/deepfake_examples">Deepfake Examples</a></li>
+            <li><a href="/tutorial_on_spotting_deepfakes">Tutorial on Spotting Deepfakes</a></li>
+            <li><a href="/community_reports">Community Reports</a></li>
+            <li><a href="/deepfake_newsfeed">Deepfake Newsfeed</a></li>
+            <li><a href="/user_generated_content_analysis">User-Generated Content Analysis</a></li>
+            <li><a href="/image_history">Image History</a></li>
+            <li><a href="/community_forum">Community Forum</a></li>
+        </ul>
+    </nav>
+
+    <section id="main-content" class="container mt-4">
+        <h2><i class="fas fa-image"></i> User-Generated Content Analysis</h2>
+        <p>Our system analyzes user-generated content to identify potential deepfake images. If you have concerns about a specific image, please submit it for analysis.</p>
+
+        <form action="/submit_analysis" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image"><i class="fas fa-upload"></i> Upload Image:</label>
+                <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Submit for Analysis</button>
+        </form>
+
+        <!-- Display analysis results or feedback here if needed -->
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Media Fake Detection</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript and jQuery (required for some components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

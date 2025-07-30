@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Awareness Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome CSS (version 6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #3498db, #8e44ad, #e74c3c, #2ecc71);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s infinite;
+        }
+    
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    
+        .quiz-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+    
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        .nav-buttons.active {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        h1 {
+            color: #3498db;
+        }
+    
+        .options button,
+        .nav-buttons button {
+            padding: 12px 16px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%;
+            margin-right: 10px;
+        }
+    
+        .options button:hover,
+        .nav-buttons button:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+    
+        .options button:last-child,
+        .nav-buttons button:last-child {
+            margin-right: 0;
+        }
+    
+        #result,
+        #correctAnswers,
+        #finalScore {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+    
+        #correctAnswers {
+            color: green;
+        }
+    
+        #finalScore {
+            font-weight: bold;
+        }
+    
+        .fa-check,
+        .fa-times {
+            margin-right: 5px;
+        }
+    
+        .animated-icon {
+            font-size: 2em;
+        }
+    
+        .image-question img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    
+        .image-question {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+    
+        .image-question.active {
+            display: block;
+        }
+    
+        #showScores,
+        #scores {
+            display: none;
+        }
+
+        
+
+        .question.active {
+            display: block;
+        }
+
+        .nav-buttons button.hide {
+            display: none;
+        }
+
+        #scores.scroll-into-view {
+            scroll-margin-top: 40px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Deepfake Awareness Quiz</h1>
+
+        <!-- Question 1 -->
+        <div class="question" id="question1">
+            <p>1. What is the primary concern associated with deepfakes?</p>
+            <div class="options" id="options1" data-correct="A">
+                <button onclick="checkAnswer('A', 'question1')">A. Spread of misinformation</button>
+                <button onclick="checkAnswer('B', 'question1')">B. Entertainment</button>
+                <button onclick="checkAnswer('C', 'question1')">C. Artistic expression</button>
+                <button onclick="checkAnswer('D', 'question1')">D. Scientific research</button>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="nextQuestion('question2')" class="hide" id="nextButton1">Next Question</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question hide" id="question2">
+            <p>2. How can you determine if a celebrity endorsement on social media is a deepfake?</p>
+            <div class="options" id="options2" data-correct="B">
+                <button onclick="checkAnswer('A', 'question2')">A. Check the celebrity's official accounts for similar posts.</button>
+                <button onclick="checkAnswer('B', 'question2')">B. Look for awkward transitions or inconsistencies in the background.</button>
+                <button onclick="checkAnswer('C', 'question2')">C. Trust the information because celebrities often use social media for endorsements.</button>
+                <button onclick="checkAnswer('D', 'question2')">D. Focus on the product itself and research its legitimacy.</button>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="nextQuestion('question3')" class="hide" id="nextButton2">Next Question</button>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question hide" id="question3">
+            <p>3. Identify whether the image below is a deepfake or not.</p>
+            <img src="https://placekitten.com/600/300" alt="Deepfake or Not">
+            <div class="options" id="options3" data-correct="B">
+                <button onclick="checkAnswer('A', 'question3')">A. Deepfake</button>
+                <button onclick="checkAnswer('B', 'question3')">B. Not a Deepfake</button>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="nextQuestion('question4')" class="hide" id="nextButton3">Next Question</button>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question hide" id="question4">
+            <p>4. What should you do if you receive a funny video of yourself that you don't remember?</p>
+            <div class="options" id="options4" data-correct="A">
+                <button onclick="checkAnswer('A', 'question4')">A. It's a deepfake created by someone with malicious intent.</button>
+                <button onclick="checkAnswer('B', 'question4')">B. You might have actually done it and simply forgot.</button>
+                <button onclick="checkAnswer('C', 'question4')">C. It's a funny coincidence captured on camera.</button>
+                <button onclick="checkAnswer('D', 'question4')">D. The video is corrupted and needs to be repaired.</button>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="nextQuestion('question5')" class="hide" id="nextButton4">Next Question</button>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question hide" id="question5">
+            <p>5. How should you approach a website claiming to offer a "deepfake detector" app?</p>
+            <div class="options" id="options5" data-correct="C">
+                <button onclick="checkAnswer('A', 'question5')">A. Download and install the app immediately to test it.</button>
+                <button onclick="checkAnswer('B', 'question5')">B. Ignore the website and rely on your own skepticism.</button>
+                <button onclick="checkAnswer('C', 'question5')">C. Research the website's legitimacy and user reviews first.</button>
+                <button onclick="checkAnswer('D', 'question5')">D. Share the website on social media to warn others.</button>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button onclick="calculateScore()" class="hide" id="showScores">Show Final Scores</button>
+        </div>
+
+        <!-- Scores Section -->
+        <div id="scores" class="hide">
+            <p id="correctAnswers" class="hide">Correct Answers: <span id="correctCount">0</span></p>
+            <p id="finalScore" class="hide">Final Score: <span id="percentage">0%</span></p>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const totalQuestions = 5;
+        let currentQuestion = 1;
+        let correctAnswers = 0;
+
+        function showElement(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.add('active');
+        }
+
+        function hideElement(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.remove('active');
+        }
+
+        function nextQuestion(questionId) {
+            hideElement(`question${currentQuestion}`);
+            hideElement(`options${currentQuestion}`);
+            hideElement(`nextButton${currentQuestion}`);
+
+            currentQuestion++;
+
+            showElement(questionId);
+            showElement(`options${currentQuestion}`);
+            showElement(`nextButton${currentQuestion}`);
+        }
+
+        function checkAnswer(answer, questionId) {
+            const resultElement = document.getElementById('result');
+            const optionsElement = document.getElementById('options' + questionId.charAt(questionId.length - 1));
+            const questionElement = document.getElementById(questionId);
+            const nextButton = document.getElementById('nextButton' + (currentQuestion - 1));
+
+            // Disable buttons to prevent multiple selections
+            const buttons = optionsElement.getElementsByTagName('button');
+            for (const button of buttons) {
+                button.disabled = true;
+            }
+
+            // Check the answer and provide feedback
+            if (answer === questionElement.getAttribute('data-correct')) {
+                resultElement.textContent = 'Correct! Well done.';
+                resultElement.style.color = 'green';
+                correctAnswers++;
+            } else {
+                resultElement.textContent = 'Incorrect. Better luck next time.';
+                resultElement.style.color = 'red';
+            }
+
+            // Display the correct answer
+            const correctAnswer = questionElement.getAttribute('data-correct');
+            resultElement.innerHTML += ` The correct answer is: ${correctAnswer}`;
+
+            // Reveal the "Show Final Scores" button after answering all questions
+            if (currentQuestion <= totalQuestions) {
+                nextButton.classList.remove('hide');
+            } else {
+                const showScoresButton = document.getElementById('showScores');
+                showScoresButton.classList.remove('hide');
+            }
+        }
+
+        function calculateScore() {
+            const showScoresButton = document.getElementById('showScores');
+            const scoresElement = document.getElementById('scores');
+            const correctAnswersElement = document.getElementById('correctAnswers');
+            const finalScoreElement = document.getElementById('finalScore');
+            const correctCountElement = document.getElementById('correctCount');
+            const percentageElement = document.getElementById('percentage');
+            const resultElement = document.getElementById('result');
+
+            // Hide the "Show Final Scores" button
+            showScoresButton.classList.add('hide');
+
+            // Display correct answers and final score with animation
+            correctAnswersElement.classList.remove('hide');
+            correctAnswersElement.style.opacity = 1;
+            correctAnswersElement.style.transform = 'translateY(0)';
+            correctCountElement.textContent = correctAnswers;
+
+            finalScoreElement.classList.remove('hide');
+            finalScoreElement.style.opacity = 1;
+            finalScoreElement.style.transform = 'translateY(0)';
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            percentageElement.textContent = percentage.toFixed(2);
+
+            // Display a congratulatory message based on the percentage
+            if (percentage === 100) {
+                resultElement.innerHTML = '<i class="fas fa-trophy animated-icon"></i> Perfect score! You nailed it!';
+            } else if (percentage >= 80) {
+                resultElement.innerHTML = '<i class="fas fa-check correct animated-icon"></i> Great job! You have a strong understanding of deepfake awareness.';
+            } else if (percentage >= 50) {
+                resultElement.innerHTML = '<i class="fas fa-check correct animated-icon"></i> Good effort! Keep learning about deepfake awareness.';
+            } else {
+                resultElement.innerHTML = '<i class="fas fa-times incorrect animated-icon"></i> Room for improvement. Learn more about deepfake awareness.';
+            }
+
+            // Scroll to the scores section
+            scoresElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

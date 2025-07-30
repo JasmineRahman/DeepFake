@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Fake Detection</title>
+    <!-- Add Bootstrap CDN link for CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #104467; /* Replace with your desired color */
+            height: 100vh;
+            margin: 0;
+            color: #fff; /* Adjust text color for better visibility */
+        }
+
+        .navbar {
+            background-color: transparent !important; /* Make the navbar transparent */
+        }
+
+        .jumbotron {
+            background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background to the jumbotron */
+            color: #fff; /* Text color for the jumbotron */
+        }
+
+        .footer {
+            background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background to the footer */
+            color: #fff; /* Text color for the footer */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-camera"></i> Media Fake Detection
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="/deepfake_awareness">
+                        <i class="fas fa-info-circle"></i> Deepfake Awareness
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deepfake_examples">
+                        <i class="fas fa-images"></i> Deepfake Examples
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tutorial_on_spotting_deepfakes">
+                        <i class="fas fa-book"></i> Tutorial on Spotting Deepfakes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community_reports">
+                        <i class="fas fa-flag"></i> Community Reports
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/newsfeed">
+                        <i class="fas fa-newspaper"></i> Deepfake Newsfeed
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user_generated_content_analysis">
+                        <i class="fas fa-chart-bar"></i> User-Generated Content Analysis
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/image_history">
+                        <i class="fas fa-history"></i> Image History
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bootstrap Main Content -->
+    <section id="main-content" class="container mt-4">
+        <!-- Bootstrap Jumbotron for a prominent message -->
+        <div class="jumbotron">
+            <h1 class="display-4"><i class="fas fa-camera"></i> Welcome to Media Fake Detection</h1>
+            <hr class="my-4">
+            <p>Explore the various features and resources to learn more about image and video fake detection.</p>
+        </div>
+
+        <!-- New Section: Image Authenticity Checker -->
+        <div class="row">
+            <div class="col-md-6">
+                <h2><i class="fas fa-search"></i> Image Authenticity Checker</h2>
+                <p>Verify the authenticity of images using our Image Authenticity Checker. Upload an image below to get started:</p>
+                <a class="nav-link" href="/upload_img">
+                    <i class="fas fa-chart-bar"></i>  Image Checker
+                </a>
+                
+
+                <!-- Placeholder for Results or Instructions -->
+                <!-- Placeholder for Results or Instructions -->
+<!-- Placeholder for Results or Instructions -->
+<div id="authenticity-results" class="mt-4">
+    {% if image_result %}
+        <div class="alert alert-info">
+            <strong>Image Authenticity Result:</strong> {{ image_result }}
+        </div>
+        <img src="{{ url_for('static', filename='images/' ~ image_filename) }}" alt="Processed Image" class="img-fluid mt-3">
+    {% endif %}
+</div>
+
+
+            </div>
+
+            <!-- New Section: Video Deepfake Detection -->
+            <div class="col-md-6">
+                <h2><i class="fas fa-video"></i> Video Authenticity Checker</h2>
+                <p>Upload a video to detect deepfakes:</p>
+
+                <!-- Video Upload Form -->
+                <a class="nav-link" href="/upload_vid">
+                    <i class="fas fa-chart-bar"></i>  Video Checker
+                </a>
+
+                <!-- Placeholder for Video Results -->
+                <div id="video-results" class="mt-4">
+                    {% if video_result %}
+                        <div class="alert alert-info">
+                            <strong>Video Deepfake Result:</strong> {{ video_result }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap Footer -->
+    <footer class="footer text-center py-3">
+        <p>&copy; 2024 Media Fake Detection</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript and jQuery (required for some components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

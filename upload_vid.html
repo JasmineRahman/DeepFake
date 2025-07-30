@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Authenticity Checker</title>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to right, #667eea, #163085);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-family: 'Pacifico', cursive;
+            color: #f8f8f8;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            margin: auto;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        form:hover {
+            transform: scale(1.05);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #444;
+            font-size: 1.2em;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            background-color: #ecf0f1;
+            color: #333;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        input[type="file"]:focus,
+        input[type="file"]:hover {
+            border-color: #1f2a38;
+            background-color: #fff;
+            color: #1f2a38;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Authenticity Checker</h1>
+    <form action="/video_upload" method="post" enctype="multipart/form-data">
+        <label for="file">Choose a video:</label>
+        <input type="file" id="file" name="file_video" accept="image/*" required>
+        <br>
+        <input type="submit" value="Upload and Detect">
+    </form>
+</body>
+</html>

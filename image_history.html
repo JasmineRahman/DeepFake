@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image History</title>
+    <!-- Add Bootstrap CDN link for CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #104467; /* Your preferred deep blue background color */
+            color: #fff; /* White text for better contrast */
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #083759; /* Darker shade of blue for the navbar */
+        }
+
+        .image-history-item {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for image items */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .image-history-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #083759;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-camera"></i> Media Fake Detection
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deepfake_awareness">Deepfake Awareness</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deepfake_examples">Deepfake Examples</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tutorial_on_spotting_deepfakes">Tutorial on Spotting Deepfakes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community_reports">Community Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deepfake_newsfeed">Deepfake Newsfeed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user_generated_content_analysis">User-Generated Content Analysis</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/image_history">Image History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/community_forum">Community Forum</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section id="main-content" class="container mt-4">
+        <h2 class="mb-4"><i class="fas fa-history"></i> Image History</h2>
+        <p>View your past image uploads and analysis results:</p>
+
+        <!-- Display a list of past images and their analysis results -->
+        <div class="image-history-item">
+            <img src="/static/user_uploads/image1.jpg" alt="User Upload 1">
+            <p><strong>Analysis Result:</strong> Genuine</p>
+            <p><strong>Uploaded on:</strong> January 14, 2024</p>
+        </div>
+
+        <div class="image-history-item">
+            <img src="/static/user_uploads/image2.jpg" alt="User Upload 2">
+            <p><strong>Analysis Result:</strong> Suspicious</p>
+            <p><strong>Uploaded on:</strong> January 13, 2024</p>
+        </div>
+
+        <!-- Add more image history items as needed -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Media Fake Detection</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript and jQuery (required for some components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

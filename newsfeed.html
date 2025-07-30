@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Newsfeed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@vitalets/google-translate-api@7.0.0/dist/browser.js"></script>
+    <script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    
+    <style>
+        body {
+            background-color: #96a8ba;
+            color: #495057;
+        }
+
+        header {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #343a40;
+        }
+
+        section {
+            padding: 20px;
+            max-height: 500px; 
+            overflow-y: auto;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .news-item:hover {
+            transform: scale(1.02);
+        }
+
+        .card-title {
+            color: #31557c;
+        }
+
+        .card-text {
+            color: #adb4bb;
+            max-height: 100px;
+            overflow-y:auto;
+        }
+
+        .news-item:hover {
+        transform: scale(1.05);
+        }
+    
+
+        .card-date {
+            color: #868e96;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #020915;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+
+        }
+
+        .translate-btn {
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Deepfake Newsfeed</h1>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Image Fake Detection</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/deepfake_awareness">Deepfake Awareness</a></li>
+                <li class="nav-item"><a class="nav-link" href="/deepfake_examples">Deepfake Examples</a></li>
+                <li class="nav-item"><a class="nav-link" href="/tutorial_on_spotting_deepfakes">Tutorial on Spotting
+                        Deepfakes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/community_reports">Community Reports</a></li>
+                <li class="nav-item"><a class="nav-link" href="/deepfake_newsfeed">Deepfake Newsfeed</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user_generated_content_analysis">User-Generated
+                        Content Analysis</a></li>
+                <li class="nav-item"><a class="nav-link" href="/image_history">Image History</a></li>
+                <li class="nav-item"><a class="nav-link" href="/community_forum">Community Forum</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <h2 class="mb-4">Deepfake Newsfeed (Live Updates)</h2>
+
+        {% if news_articles %}
+            {% for article in news_articles %}
+                <div class="news-item">
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <p class="card-text">{{ article.description }}</p>
+                    <p class="card-date">Published on: {{ article.publishedAt }}</p>
+                    <button class="btn btn-primary translate-btn" data-lang="en" data-card-id="{{ article.id }}">Translate</button>
+                    <a href="{{ article.url }}" target="_blank" class="btn btn-primary">Read More</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No news articles available.</p>
+        {% endif %}
+    </section>
+
+    
+    
+
+    <footer>
+        <p>&copy; 2024 Image Fake Detection</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const translateButtons = document.querySelectorAll('.translate-btn');
+
+            translateButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const cardId = this.getAttribute('data-card-id');
+                    const newsItem = document.getElementById(cardId);
+                    const titleElement = newsItem.querySelector('.card-title');
+                    const descriptionElement = newsItem.querySelector('.card-text');
+                    const publishedDateElement = newsItem.querySelector('.card-date');
+
+                    // You can customize the target language code as needed
+                    const targetLang = this.getAttribute('data-lang');
+
+                    // Translate title
+                    translateText(titleElement.textContent, targetLang)
+                        .then(translatedTitle => {
+                            titleElement.textContent = translatedTitle;
+                        })
+                        .catch(error => console.error('Error translating title:', error));
+
+                    // Translate description
+                    translateText(descriptionElement.textContent, targetLang)
+                        .then(translatedDescription => {
+                            descriptionElement.textContent = translatedDescription;
+                        })
+                        .catch(error => console.error('Error translating description:', error));
+
+                });
+            });
+
+            function translateText(text, targetLang) {
+                return new Promise((resolve, reject) => {
+                    googleTranslate.translate(text, 'en', targetLang, function (err, translation) {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(translation.translatedText);
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
